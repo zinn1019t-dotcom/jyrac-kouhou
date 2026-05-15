@@ -5,48 +5,84 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>JYRAC 広報局ポータル</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        :root { --jyrac-navy: #002B41; --jyrac-green: #00A19B; }
+        .bg-jyrac-navy { background-color: var(--jyrac-navy); }
+        .bg-jyrac-green { background-color: var(--jyrac-green); }
+        .border-jyrac-green { border-color: var(--jyrac-green); }
+        .text-jyrac-green { color: var(--jyrac-green); }
+    </style>
 </head>
-<body class="bg-gray-50 text-slate-900">
+<body class="bg-gray-50 text-slate-800 font-sans">
 
-    <header class="bg-[#002B41] text-white p-6 shadow-md">
-        <div class="container mx-auto flex justify-between items-center">
-            <h1 class="text-xl font-bold">JYRAC PR System</h1>
-            <nav class="space-x-4 text-sm">
-                <a href="https://github.com/あなたのユーザー名/jyrac-pr/issues" target="_blank" class="hover:text-emerald-400">議事録一覧</a>
+    <header class="bg-jyrac-navy text-white p-6 shadow-lg">
+        <div class="container mx-auto flex flex-col md:flex-row justify-between items-center gap-4">
+            <div class="flex items-center gap-3">
+                <div class="bg-white p-1 rounded">
+                    <span class="text-jyrac-navy font-black text-xl px-1">JYRAC</span>
+                </div>
+                <h1 class="text-xl font-bold tracking-wider">広報局ポータル</h1>
+            </div>
+            <nav class="flex gap-4 text-sm">
+                <a href="#schedule" class="hover:text-emerald-400 font-medium">日程調整</a>
+                <a href="#tasks" class="hover:text-emerald-400 font-medium">担当業務</a>
+                <a href="https://docs.google.com/document/d/15GyUS29yVTQpGufv3dUUEkIeD69bLiSnTCweasdxFvQ/edit" target="_blank" class="hover:text-emerald-400 font-medium">議事録</a>
             </nav>
         </div>
     </header>
 
-    <main class="container mx-auto py-10 px-4">
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-            
+    <main class="container mx-auto py-8 px-4 space-y-8">
+
+        <section id="schedule" class="bg-white rounded-2xl shadow-sm border-2 border-jyrac-green overflow-hidden">
+            <div class="bg-jyrac-green text-white px-6 py-3 flex justify-between items-center">
+                <h2 class="font-bold text-lg">📅 初回ミーティングの日程調整</h2>
+                <span class="bg-white text-jyrac-green text-xs font-bold px-2 py-1 rounded-full animate-pulse">要対応</span>
+            </div>
+            <div class="p-6">
+                <p class="text-gray-600 mb-6">
+                    広報局のキックオフmtgを行います。以下のボタンから候補日の確認・回答をお願いします。
+                </p>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <a href="https://calendar.google.com/" target="_blank" 
+                       class="flex items-center justify-center gap-2 bg-jyrac-navy text-white py-4 rounded-xl font-bold shadow-lg hover:opacity-90 transition">
+                        <span>回答フォームを開く</span>
+                    </a>
+                    <div class="p-4 bg-emerald-50 rounded-xl border border-emerald-100">
+                        <p class="text-xs text-emerald-700 font-bold mb-1">決定事項の記録先</p>
+                        <a href="https://docs.google.com/document/d/15GyUS29yVTQpGufv3dUUEkIeD69bLiSnTCweasdxFvQ/edit" target="_blank" class="text-sm text-jyrac-navy underline font-medium">
+                            JYRAC 広報局 議事録マスター
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="tasks" class="grid grid-cols-1 md:grid-cols-3 gap-6">
             <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
-                <h2 class="text-lg font-bold mb-4 border-l-4 border-[#00A19B] pl-3">SNS・制作担当</h2>
-                <ul class="space-y-3">
-                    <li class="flex justify-between border-b pb-2"><span>Instagram</span> <span class="font-bold text-emerald-700">J・N</span></li>
-                    <li class="flex justify-between border-b pb-2"><span>X (Twitter)</span> <span class="font-bold text-emerald-700">J</span></li>
-                    <li class="flex justify-between border-b pb-2"><span>HP</span> <span class="font-bold text-emerald-700">J・N</span></li>
-                    <li class="flex justify-between"><span>ポスター募集</span> <span class="font-bold text-orange-600">横山</span></li>
+                <h3 class="font-bold border-l-4 border-jyrac-green pl-3 mb-4 text-slate-700">SNS運用担当</h3>
+                <ul class="text-sm space-y-3">
+                    <li class="flex justify-between"><span>Instagram</span><span class="font-bold">J・N</span></li>
+                    <li class="flex justify-between"><span>X (Twitter)</span><span class="font-bold">J</span></li>
+                    <li class="flex justify-between"><span>HP</span><span class="font-bold">J・N</span></li>
                 </ul>
             </div>
-
+            <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100 text-orange-600">
+                <h3 class="font-bold border-l-4 border-orange-500 pl-3 mb-4">ポスター制作</h3>
+                <p class="text-sm">担当：<span class="font-black">横山</span></p>
+                <p class="text-xs mt-2 text-gray-500">JYRACメンバー募集用ポスター制作中</p>
+            </div>
             <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
-                <h2 class="text-lg font-bold mb-4 border-l-4 border-[#00A19B] pl-3">YouTube 1on1調整</h2>
-                <p class="text-sm mb-4 text-gray-600">Googleカレンダーの予約リンクへ飛びます。</p>
-                <a href="あなたのGoogleカレンダー予約URL" target="_blank" class="block w-full text-center bg-[#00A19B] text-white py-3 rounded-lg font-bold hover:opacity-90">
-                    インタビュー日程を調整する
-                </a>
+                <h3 class="font-bold border-l-4 border-slate-500 pl-3 mb-4 text-slate-700">YouTube計画</h3>
+                <p class="text-sm">Zoomインタビュー番組</p>
+                <p class="text-xs mt-2 text-gray-500">理事・PLへの1on1インタビュー予定</p>
             </div>
+        </section>
 
-            <div class="md:col-span-2 bg-white p-6 rounded-xl shadow-sm border border-gray-100">
-                <h2 class="text-lg font-bold mb-4 border-l-4 border-[#00A19B] pl-3">議事録を作成する</h2>
-                <p class="text-sm mb-4 text-gray-600">内容はGitHubの「Issues」にストックされ、防災政策比較の基データになります。</p>
-                <a href="https://github.com/あなたのユーザー名/jyrac-pr/issues/new" target="_blank" class="block w-full text-center bg-slate-700 text-white py-3 rounded-lg font-bold hover:bg-slate-800">
-                    新規議事録（Issue）を作成
-                </a>
-            </div>
-        </div>
     </main>
+
+    <footer class="text-center py-10 text-gray-400 text-xs">
+        &copy; 2024 JYRAC PR Office. Built with GitHub Pages.
+    </footer>
 
 </body>
 </html>
