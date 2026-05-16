@@ -30,6 +30,8 @@
 </head>
 <body class="bg-slate-50 text-slate-800 font-sans antialiased select-none">
 
+    <div id="toast" class="fixed top-20 left-1/2 -translate-x-1/2 z-50 bg-slate-900 text-white px-6 py-3 rounded-xl shadow-xl text-sm font-bold opacity-0 pointer-events-none transition-all duration-300 transform -translate-y-2"></div>
+
     <header class="bg-jyrac-navy text-white p-4 md:p-5 shadow-md sticky top-0 z-50">
         <div class="max-w-7xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-4">
             <div class="flex items-center gap-3 w-full sm:w-auto">
@@ -73,7 +75,7 @@
                 </div>
                 <div class="p-4 md:p-6 flex-1 flex flex-col justify-between gap-4">
                     <p class="text-xs xs:text-sm lg:text-base text-gray-600 leading-relaxed">
-                        初回キックオフミーティングを行います。各種デバイスやLINE内での操作性を考慮し、同一画面でスムーズに開きます。調整さんより回答をお願いします。
+                        初回ミーティングを行います。各種デバイスやLINE内での操作性を考慮し、同一画面でスムーズに開きます。調整さんより回答をお願いします。
                     </p>
                     <a href="https://chouseisan.com/s?h=7ed52b12e8f14deab71405f2dea3c99a" 
                        class="block w-full text-center bg-jyrac-navy text-white py-3.5 rounded-xl font-bold text-xs xs:text-sm md:text-base shadow hover:bg-slate-800 transition active:scale-[0.99]">
@@ -96,10 +98,10 @@
                            class="flex items-center justify-center text-center bg-slate-100 border border-slate-300 text-slate-700 py-3.5 rounded-xl font-bold text-xs xs:text-sm hover:bg-slate-200 transition active:bg-slate-300">
                             ドキュメント編集
                         </a>
-                        <a href="https://script.google.com/macros/s/AKfycbxTmTu48nridW02EdBogLSpdNCNLWpGGJQFtXHHxGUjoX724sD2tK3xwevs82InGL2m/exec" 
+                        <button onclick="sendLineNotification()" 
                            class="flex items-center justify-center text-center gap-1 bg-[#06C755] text-white py-3.5 rounded-xl font-bold text-xs xs:text-sm shadow hover:opacity-90 transition active:scale-[0.99]">
                             <span>💬</span> LINEへ通知
-                        </a>
+                        </button>
                     </div>
                 </div>
             </section>
@@ -160,6 +162,36 @@
     <footer class="text-center py-8 md:py-12 text-gray-400 text-[9px] md:text-[10px] tracking-widest uppercase">
         &copy; 2026 JYRAC PR Office.
     </footer>
+
+    <script>
+        function showToast(message) {
+            const toast = document.getElementById('toast');
+            toast.innerText = message;
+            toast.classList.remove('opacity-0', 'pointer-events-none', '-translate-y-2');
+            toast.classList.add('opacity-100', 'translate-y-0');
+            setTimeout(() => {
+                toast.classList.remove('opacity-100', 'translate-y-0');
+                toast.classList.add('opacity-0', 'pointer-events-none', '-translate-y-2');
+            }, 3000);
+        }
+
+        function sendLineNotification() {
+            showToast("⏳ LINEに通知を送信中...");
+            
+            // LINEブラウザ等でも確実にGASを実行させるためのダミーパラメータ(t)付きURL
+            const gasUrl = "https://script.google.com/macros/s/AKfycbxTmTu48nridW02EdBogLSpdNCNLWpGGJQFtXHHxGUjoX724sD2tK3xwevs82InGL2m/exec?t=" + new Date().getTime();
+            
+            // ページ遷移させずに裏側でGASを実行
+            fetch(gasUrl, { mode: 'no-cors' })
+                .then(() => {
+                    showToast("✅ LINE通知を送信しました！");
+                })
+                .catch((error) => {
+                    showToast("❌ 送信エラーが発生しました");
+                    console.error('Error:', error);
+                });
+        }
+    </script>
 
 </body>
 </html>
