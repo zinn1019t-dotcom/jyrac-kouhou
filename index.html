@@ -221,7 +221,7 @@
         function sendLineNotification() {
             showToast("⏳ LINEに通知を送信中...");
             
-            const gasUrl = "https://script.google.com/macros/s/AKfycbxTmTu48nridW02EdBogLSpdNCNLWpGGJQFtXHHxGUjoX724sD2tK3xwevs82InGL2m/exec?t=" + new Date().getTime();
+            const gasUrl = "https://script.google.com/macros/s/AKfycbyv49XwEzcl7ARaxdasx6Uo667B_KQiwgJYbV79wL_IsNuLuvBV-cEZ_8pfvHr__i3R/exec?t=" + new Date().getTime();
             
             fetch(gasUrl, { mode: 'no-cors' })
                 .then(() => {
