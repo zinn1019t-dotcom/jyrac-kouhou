@@ -6,6 +6,7 @@
     <title>JYRAC 広報局ポータル</title>
     <link rel="icon" href="IMG_8325.jpg" type="image/jpeg">
     <script src="https://cdn.tailwindcss.com"></script>
+    <script src="config.js"></script>
     <script>
         tailwind.config = {
             theme: {
@@ -46,7 +47,7 @@
             <nav class="grid grid-cols-3 sm:flex gap-2 w-full sm:w-auto text-[11px] xs:text-xs md:text-sm">
                 <a href="#schedule" class="text-center bg-white/10 hover:bg-white/20 py-2 px-3 rounded-lg font-medium transition active:bg-white/30">日程調整</a>
                 <a href="#tasks" class="text-center bg-white/10 hover:bg-white/20 py-2 px-3 rounded-lg font-medium transition active:bg-white/30">担当業務</a>
-                <a href="https://docs.google.com/document/d/15GyUS29yVTQpGufv3dUUEkIeD69bLiSnTCweasdxFvQ/edit" class="text-center bg-emerald-500 hover:bg-emerald-600 text-white py-2 px-4 rounded-lg font-bold transition shadow-sm active:opacity-90">議事録</a>
+                <a id="nav-minutes-link" href="#" target="_blank" class="text-center bg-emerald-500 hover:bg-emerald-600 text-white py-2 px-4 rounded-lg font-bold transition shadow-sm active:opacity-90">議事録</a>
             </nav>
         </div>
     </header>
@@ -77,7 +78,7 @@
                     <p class="text-xs xs:text-sm lg:text-base text-gray-600 leading-relaxed">
                         初回ミーティングを行います。各種デバイスやLINE内での操作性を考慮し、同一画面でスムーズに開きます。調整さんより回答をお願いします。
                     </p>
-                    <a href="https://chouseisan.com/s?h=7ed52b12e8f14deab71405f2dea3c99a" 
+                    <a id="schedule-form-link" href="#" target="_blank"
                        class="block w-full text-center bg-jyrac-navy text-white py-3.5 rounded-xl font-bold text-xs xs:text-sm md:text-base shadow hover:bg-slate-800 transition active:scale-[0.99]">
                         回答フォーム（調整さん）を開く
                     </a>
@@ -94,7 +95,7 @@
                         すべての記録は1つのマスタードキュメントに蓄積します。更新後、右側の「LINEへ通知」ボタンを押すと広報局のグループラインへ自動で最新の議事録が共有されます。
                     </p>
                     <div class="grid grid-cols-2 gap-3">
-                        <a href="https://docs.google.com/document/d/15GyUS29yVTQpGufv3dUUEkIeD69bLiSnTCweasdxFvQ/edit" 
+                        <a id="edit-doc-link" href="#" target="_blank"
                            class="flex items-center justify-center text-center bg-slate-100 border border-slate-300 text-slate-700 py-3.5 rounded-xl font-bold text-xs xs:text-sm hover:bg-slate-200 transition active:bg-slate-300">
                              ドキュメント編集
                         </a>
@@ -115,15 +116,15 @@
                     <ul class="text-xs xs:text-sm space-y-3">
                         <li class="flex justify-between items-center border-b border-slate-100 pb-2.5">
                             <span class="text-gray-500">Instagram</span>
-                            <span class="font-medium bg-teal-50 text-teal-700 px-3 py-0.5 rounded-full text-xs">八重, 板谷</span>
+                            <span class="font-medium bg-teal-50 text-teal-700 px-3 py-0.5 rounded-full text-xs"></span>
                         </li>
                         <li class="flex justify-between items-center border-b border-slate-100 pb-2.5">
                             <span class="text-gray-500">X (Twitter)</span>
-                            <span class="font-medium bg-teal-50 text-teal-700 px-3 py-0.5 rounded-full text-xs">八重, 板谷</span>
+                            <span class="font-medium bg-teal-50 text-teal-700 px-3 py-0.5 rounded-full text-xs"></span>
                         </li>
                         <li class="flex justify-between items-center pb-1">
                             <span class="text-gray-500">HP更新</span>
-                             <span class="font-medium bg-teal-50 text-teal-700 px-3 py-0.5 rounded-full text-xs">高江洲, 與那城</span>
+                             <span class="font-medium bg-teal-50 text-teal-700 px-3 py-0.5 rounded-full text-xs"></span>
                         </li>
                     </ul>
                 </div>
@@ -138,7 +139,7 @@
                             <div class="h-8 w-8 bg-slate-800 text-white rounded-full flex items-center justify-center text-xs font-bold ring-2 ring-white shrink-0">高</div>
                         </div>
                         <div class="min-w-0">
-                            <p class="text-xs xs:text-sm font-bold truncate">與那城さん、高江洲 (JYRAC)</p>
+                            <p class="text-xs xs:text-sm font-bold truncate"></p>
                             <p class="text-[9px] text-gray-500 truncate">Web Development & Management</p>
                         </div>
                     </div>
@@ -158,7 +159,7 @@
                     <div class="flex items-center gap-2.5 mb-4">
                         <div class="h-8 w-8 bg-orange-100 rounded-full flex items-center justify-center text-orange-600 text-xs font-bold shrink-0">横</div>
                         <div class="min-w-0">
-                            <p class="text-xs xs:text-sm font-bold truncate">横山さん</p>
+                            <p class="text-xs xs:text-sm font-bold truncate"></p>
                             <p class="text-[9px] text-gray-500 truncate">Member Recruitment</p>
                         </div>
                     </div>
@@ -207,6 +208,15 @@
     </footer>
 
     <script>
+        // ページ読み込み時にconfig.jsのURLを各リンクにセット
+        document.addEventListener("DOMContentLoaded", () => {
+            if (typeof JYRAC_CONFIG !== "undefined") {
+                if(document.getElementById('nav-minutes-link')) document.getElementById('nav-minutes-link').href = JYRAC_CONFIG.minutesUrl;
+                if(document.getElementById('edit-doc-link')) document.getElementById('edit-doc-link').href = JYRAC_CONFIG.minutesUrl;
+                if(document.getElementById('schedule-form-link')) document.getElementById('schedule-form-link').href = JYRAC_CONFIG.scheduleUrl;
+            }
+        });
+
         function showToast(message) {
             const toast = document.getElementById('toast');
             toast.innerText = message;
@@ -219,9 +229,16 @@
         }
 
         function sendLineNotification() {
+            // configが存在しない、またはURLが空の場合はエラー
+            if (typeof JYRAC_CONFIG === "undefined" || !JYRAC_CONFIG.gasWebhookUrl) {
+                showToast("❌ 設定が見つかりません");
+                return;
+            }
+
             showToast("⏳ LINEに通知を送信中...");
             
-            const gasUrl = "https://script.google.com/macros/s/AKfycbyv49XwEzcl7ARaxdasx6Uo667B_KQiwgJYbV79wL_IsNuLuvBV-cEZ_8pfvHr__i3R/exec?t=" + new Date().getTime();
+            // 外部ファイルからGASのURLを取得してタイムスタンプを付与
+            const gasUrl = JYRAC_CONFIG.gasWebhookUrl + "?t=" + new Date().getTime();
             
             fetch(gasUrl, { mode: 'no-cors' })
                 .then(() => {
